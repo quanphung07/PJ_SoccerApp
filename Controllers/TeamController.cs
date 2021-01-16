@@ -1,7 +1,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SoccerManage.Data;
+using SoccerManageApp.Dtos;
 using SoccerManageApp.Models.Entities;
 
 namespace SoccerManageApp.Controllers
@@ -10,9 +12,11 @@ namespace SoccerManageApp.Controllers
     public class TeamController:Controller
     {
         private readonly IDataRepo _repo;
-        public TeamController(IDataRepo repo)
+         private readonly UserManager<IdentityUser> _userManager;
+        public TeamController(IDataRepo repo,UserManager<IdentityUser> userManager)
         {
             _repo=repo;
+            _userManager=userManager;
         }
         public async Task<IActionResult> ListTeams()
         {
@@ -27,13 +31,21 @@ namespace SoccerManageApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateTeam(Team model,int stadiumID)
+        public async Task<IActionResult> CreateTeam(CreateTeamView model,int stadiumID)
         {
             if(!ModelState.IsValid)
             {
                 return View("Error");
             }
-            var result=await _repo.CreateTeamAsync(model);
+            var user=await _userManager.FindByNameAsync(model.Creator);
+            var team=new Team()
+            {
+                TeamName=model.TeamName,
+                TeamImage=model.TeamImage,
+                StadiumID=model.StadiumID,
+                CreatorID=user.Id
+            };
+            var result=await _repo.CreateTeamAsync(team);
             if(result >0)
             {
                 return RedirectToAction("ListTeams");

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using SoccerManageApp.Models.Admin;
 
 namespace SoccerManageApp.Controllers {
-     [Authorize(Policy="RequireUser")]
+     [Authorize(Roles="Admin")]
     public class AdminController : Controller {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;

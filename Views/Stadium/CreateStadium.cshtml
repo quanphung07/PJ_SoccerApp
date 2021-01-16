@@ -4,12 +4,7 @@
 <form method="POST" action="/Stadium/CreateStadium">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
-        <label asp-for="@Model.StadiumID"></label>
-        <input type="number" asp-for="@Model.StadiumID"/>
-        <span asp-validation-for="@Model.StadiumID"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.StadiumName"></label>
+        <label asp-for="@Model.StadiumName">Stadium Name</label>
         <input type="text" asp-for="@Model.StadiumName"/>
         <span asp-validation-for="@Model.StadiumName"></span>
     </div>

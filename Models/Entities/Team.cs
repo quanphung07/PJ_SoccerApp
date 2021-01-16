@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
 
 namespace SoccerManageApp.Models.Entities
 {
@@ -17,6 +18,8 @@ namespace SoccerManageApp.Models.Entities
         public string TeamName { get; set; }
         public string TeamImage{get;set;}
         public int StadiumID { get; set; }
+        public string CreatorID{get;set;}
+        public IdentityUser Creator{get;set;}
         public virtual Stadium Stadium { get; set; }
         public virtual ICollection<Player> Players { get; set; }
 

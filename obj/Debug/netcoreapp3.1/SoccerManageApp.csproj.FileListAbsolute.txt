@@ -75,7 +75,6 @@
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Admin/EditRoleInUser.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Account/AccessDenied.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Player/Details.cshtml.g.cs
-/home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Score/Create.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Score/Details.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Stadium/Details.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Team/Details.cshtml.g.cs
@@ -90,3 +89,4 @@
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Match/CreateMatch.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Result/CreateResult.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Result/Ranking.cshtml.g.cs
+/home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Score/CreateScore.cshtml.g.cs

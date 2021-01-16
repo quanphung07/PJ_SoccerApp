@@ -53,6 +53,7 @@ namespace SoccerManageApp
                 options.Password.RequireUppercase=true;
 
             });
+           
             services.AddScoped<IDataRepo,DataRepo>();
         
         }

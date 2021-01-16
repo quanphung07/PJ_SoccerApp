@@ -34,10 +34,12 @@ namespace SoccerManageApp.Controllers
             bool checkExist=_repo.CheckExist(match.HomeTeamName,match.AwayTeamName);
             if(checkExist)
             {
-                return View(new {checkExist=checkExist});
+                return RedirectToAction("CreateMatch",new {checkExist=checkExist});
             }
             await _repo.CreateMatchAsync(match);
-            return RedirectToAction("CreateResult","Result",new {matchId=match.MatchID});
+            var matchAfter=await _repo.GetMatchWithHomeAndAwayTeamAsync(match.HomeTeamName,match.AwayTeamName);
+            
+            return RedirectToAction("CreateResult","Result",new {matchId=matchAfter.MatchID});
         }
     }
 }

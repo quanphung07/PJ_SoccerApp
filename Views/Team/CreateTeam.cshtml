@@ -1,4 +1,6 @@
-@model SoccerManageApp.Models.Entities.Team
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> _signInManage;
+@model SoccerManageApp.Dtos.CreateTeamView
 
 <h3>Register a team for league</h3>
 <form method="POST">
@@ -10,6 +12,10 @@
     <div class="form-group">
         <label asp-for="@Model.TeamImage"></label>
         <input type="text" asp-for="@Model.TeamImage"/>
+        <span asp-validation-for="@Model.TeamImage" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="hidden" asp-for="@Model.Creator" value="@User.Identity.Name"/>
         <span asp-validation-for="@Model.TeamImage" class="text-danger"></span>
     </div>
     <div class="form-group">

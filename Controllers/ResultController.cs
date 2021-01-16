@@ -15,13 +15,14 @@ namespace SoccerManageApp.Controllers
         public IActionResult CreateResult(int matchId)
         {
             ViewBag.matchId=matchId;
+          
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> CreateResult(Result result,int matchId)
         {
             await _repo.CreateResultAsync(result,matchId);
-            return RedirectToAction("ListMatches","Match");
+            return RedirectToAction("CreateScore","Score",new {matchId=matchId});
         }
         public async Task<IActionResult> Ranking()
         {

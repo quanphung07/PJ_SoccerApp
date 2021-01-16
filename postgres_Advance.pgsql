@@ -55,11 +55,20 @@ EXECUTE PROCEDURe tg_insert_into_teamresult1();
 ----
 ----create a view for position's league
 
+CREATE OR REPLACE VIEW rank_table
+ AS
+ SELECT team_result.win_match,
+    team_result.draw_match,
+    team_result.lose_match,
+    team_result.team_name,
+    team_result.goal_for,
+    team_result.goal_againt,
+    team_result.team_image,
+    team_result.win_match * 3 + team_result.draw_match AS point,
+    team_result.win_match + team_result.lose_match + team_result.draw_match AS played
+   FROM team_result
+  ORDER BY (team_result.win_match * 3 + team_result.draw_match) DESC;
 
-create view rank_table as
-create view rank_table as
-select *,(win_match*3+draw_match)as point ,(win_match+lose_match+draw_match) as played
-from team_result order by point desc;
 
 
 ----test

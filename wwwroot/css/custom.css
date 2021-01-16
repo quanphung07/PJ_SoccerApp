@@ -1,0 +1,54 @@
+body
+{
+    padding:0;
+}
+.container
+{
+    position: relative;
+}
+.container .login{
+    background-color:aqua;
+    width:400px;
+    height:350px;
+    display: flex;
+    flex-direction: column;
+    margin: 200px 0 0 750px;
+    border-style: solid;
+    border-radius:5px;
+    position: absolute;
+    
+
+}
+.login .form-controll {
+    margin-left:20px;
+}
+.login #remember {
+    margin-top: 10px;;
+    margin-left:120px;
+}
+.login #title {
+    margin-left: 170px;
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+}
+.login label{
+    font-size: 25px;
+    color:black;
+}
+.login span {
+    color: red;
+}
+.login .form-group{
+    margin-top: 20px;
+}
+.login button{
+    margin-left: 170px;
+    margin-top:30px;
+    padding: 7px;
+    width: 120px;
+    border-radius: 15px;
+    background-color:yellowgreen;
+    font-size: 25px;
+    pointer-events: fill;
+}

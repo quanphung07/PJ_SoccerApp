@@ -23,7 +23,8 @@ namespace SoccerManageApp.Controllers
             {
                 await _repo.CreateStadiumAsync(model);
             }
-            return RedirectToAction("CreateTeam","Team",new {stadiumID=model.StadiumID});
+            var stadium=await _repo.GetStadiumByNameAsync(model.StadiumName);
+            return RedirectToAction("CreateTeam","Team",new {stadiumID=stadium.StadiumID});
 ;        }
     }
 }

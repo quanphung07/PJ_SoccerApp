@@ -12,6 +12,7 @@ namespace SoccerManageApp.Models.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Kit { get; set; }
+        public int Age{get;set;}
         public string Position{get;set;}
         public string Country{get;set;}
         public string CountryImage{get;set;}

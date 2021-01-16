@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SoccerManageApp.Models;
@@ -9,9 +10,10 @@ using SoccerManageApp.Models;
 namespace SoccerManageApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210112151159_Initial_Update9")]
+    partial class Initial_Update9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -399,10 +401,6 @@ namespace SoccerManageApp.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<string>("CreatorID")
-                        .HasColumnName("creator_id")
-                        .HasColumnType("text");
-
                     b.Property<int>("StadiumID")
                         .HasColumnName("stadium_id")
                         .HasColumnType("integer");
@@ -414,8 +412,6 @@ namespace SoccerManageApp.Migrations
                         .HasMaxLength(30);
 
                     b.HasKey("TeamName");
-
-                    b.HasIndex("CreatorID");
 
                     b.HasIndex("StadiumID")
                         .IsUnique();
@@ -556,10 +552,6 @@ namespace SoccerManageApp.Migrations
 
             modelBuilder.Entity("SoccerManageApp.Models.Entities.Team", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorID");
-
                     b.HasOne("SoccerManageApp.Models.Entities.Stadium", "Stadium")
                         .WithOne("Team")
                         .HasForeignKey("SoccerManageApp.Models.Entities.Team", "StadiumID")

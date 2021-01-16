@@ -12,6 +12,7 @@ namespace SoccerManageApp.Configuration
             builder.Property(p=>p.ScoreID).HasColumnName("score_id");
             builder.Property(p=>p.MatchID).HasColumnName("match_id");
             builder.Property(p=>p.PlayerID).HasColumnName("player_id");
+            builder.Property(p=>p.IsOwnGoal).HasColumnName("is_owngoal");
             builder.Property(p=>p.TeamName).HasColumnName("team_name").HasMaxLength(30);
             builder.HasOne(m=>m.Match).WithMany(sc=>sc.Scores);
             builder.HasOne(p=>p.Player).WithMany(sc=>sc.Scores);

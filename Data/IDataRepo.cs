@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using SoccerManageApp.Dtos;
 using SoccerManageApp.Models.Entities;
 
@@ -12,7 +13,7 @@ namespace SoccerManage.Data
         Task<Team> GetTeamByNameAsync(string name);
         Task<IEnumerable<TeamDetails>> GetTeamByName_withSearchAsync(string name,string search);
         Task<int> CreateTeamAsync(Team team);
-        Task<IEnumerable<TeamDtos>> GetAllTeamsAsync();
+        Task<IEnumerable<CreateTeamView>> GetAllTeamsAsync();
         Task<Team> UpdateTeamAsync(Team team,string teamName);
          Task<IEnumerable<TeamDetails>> GetTeamDetailsByNameAsync(string teamName);
          Task DeleteTeamAsync(string teamName);
@@ -22,8 +23,9 @@ namespace SoccerManage.Data
         Task <int> CreatePlayerAsync(Player player,string teamName);
         Task UpdatePlayerAsync(Player player,int playerId);
         Task DeletePlayerAsync(int playerId);
+        Task<Player> GetPlayerByNameAsync(string name);
         //Stadium data
-        Stadium GetStadiumByName(string name);
+        Task<Stadium> GetStadiumByNameAsync(string name);
         bool SaveChanges();
         Task<bool> SaveChangesAsync();
         Task<Player> GetPlayerByIdAsync(int? id);
@@ -35,13 +37,16 @@ namespace SoccerManage.Data
         bool CheckExist(string homeTeam,string awayTeam);
         Task<MatchInfoDtos> GetMatchByIdAsync(int matchId);
         Task<IEnumerable<MatchInfoDtos>> GetMatchByDatetimeAsync(DateTime date);
+        Task<Match> GetMatchWithHomeAndAwayTeamAsync(string home,string away);
 
         //result data
         Task<int> CreateResultAsync(Result result,int matchId);
         Task<IEnumerable<RankingDto>> GetRankAsync();
         //score data
         Task<IEnumerable<Score>> GetScores(int matchId);
-        Task<int> CreateScore(Score score);
-
+        Task<int> CreateScoreAsync(Score score);
+        //user
+        
+        
     }
 }

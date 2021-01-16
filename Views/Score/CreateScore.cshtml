@@ -1,0 +1,50 @@
+@model SoccerManageApp.Dtos.AddScoreView
+@{
+    ViewData["Title"]="Create Score";
+}
+
+@if(ViewBag.success)
+{
+    <span style="color: green;" >Add Success</span>
+}
+
+
+<span id="addSuccess" style="color: green;display:none">Add Success</span>
+<h3>Goals for match between <span style="color: red;">@ViewBag.matchInfo.HomeName</span> vs <span style="color: red;">@ViewBag.matchInfo.AwayName</span> </h3>
+<form asp-action="CreateScore" asp-controller="Score" asp-route-matchId="@ViewBag.matchId" method="POST">
+    <div class="form-group">
+        <input asp-for="@Model.MatchID" readonly value="@ViewBag.matchId" type="hidden">
+    </div>
+    <div class="form-group">   
+        <input asp-for="@Model.HomeName" readonly value="@ViewBag.matchInfo.HomeName" type="hidden"> 
+    </div>
+     <div class="form-group">
+        <input asp-for="@Model.AwayName" readonly value="@ViewBag.matchInfo.AwayName" type="hidden">
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.PlayerName">Player Name</label>
+        <input asp-for="@Model.PlayerName" type="text"/>
+        <span asp-validation-for="@Model.PlayerName"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="@Model.OfTeam">Of Team</label>
+        <input asp-for="@Model.OfTeam" type="text"/>
+        <span asp-validation-for="@Model.OfTeam"></span>
+    </div>
+    <div class="form-group">
+         <input asp-for="@Model.IsOwnGoal" type="checkbox">
+        <label asp-for="@Model.IsOwnGoal">Is own goal?</label>
+    </div>
+
+    <div class="form-group">
+        
+        <button type="submit">Create</button>
+        <a href="/Match/ListMatches" >Done</a>
+
+    </div> 
+</form>
+@section Scripts{
+    <scrip src="~/js/custom.js"></scrip>
+}
+
