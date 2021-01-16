@@ -14557,6 +14557,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Account/ChangePassword.cshtml",
+      "TargetPath": "Views\\Account\\ChangePassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Admin/EditRole.cshtml",
       "TargetPath": "Views\\Admin\\EditRole.cshtml",
       "FileKind": "mvc"

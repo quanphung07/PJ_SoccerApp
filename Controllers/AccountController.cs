@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SoccerManage.Data;
+using SoccerManageApp.Dtos;
 using SoccerManageApp.Models.Account;
 
 namespace SoccerManageApp.Controllers {
@@ -77,7 +78,7 @@ namespace SoccerManageApp.Controllers {
                 }
                 else
                 {
-                    ModelState.AddModelError("","can't login");
+                    ModelState.AddModelError("","password or username is not correct");
                 }
             }
             return View(model);
@@ -86,6 +87,34 @@ namespace SoccerManageApp.Controllers {
         public IActionResult AccessDenied()
         { 
             return View();
+        }
+        public async Task<IActionResult> ChangePassword(string userName)
+        {
+            
+           // var user=await _userManager.FindByNameAsync(userName);
+        var user=await _userManager.FindByNameAsync(userName);
+        var userView=new ChangePasswordModel()
+           {
+               Username=user.UserName
+           };
+
+            return View(userView);
+            
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel model,string userName)
+        {
+            var user=await _userManager.FindByNameAsync(userName);
+            var checkPwd=await _userManager.CheckPasswordAsync(user,model.OldPassword);
+            if(!checkPwd)
+            {
+                ModelState.AddModelError("","Your password is not correct");
+                return View(model);
+            }
+            await _userManager.ChangePasswordAsync(user,model.OldPassword,model.NewPassword);
+            return RedirectToAction("Index","Home");
+            
         }
     }
 }

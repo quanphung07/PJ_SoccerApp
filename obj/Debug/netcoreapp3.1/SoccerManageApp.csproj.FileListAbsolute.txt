@@ -90,3 +90,4 @@
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Result/CreateResult.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Result/Ranking.cshtml.g.cs
 /home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Score/CreateScore.cshtml.g.cs
+/home/quanbka/SoccerManageApp/obj/Debug/netcoreapp3.1/Razor/Views/Account/ChangePassword.cshtml.g.cs
