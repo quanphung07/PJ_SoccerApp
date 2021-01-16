@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SoccerManage.Data;
+using SoccerManageApp.Dtos;
 using SoccerManageApp.Models.Entities;
 
 namespace SoccerManageApp.Controllers
@@ -29,17 +31,74 @@ namespace SoccerManageApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateMatch(Match match)
+        public async Task<IActionResult> CreateMatch(CreateMatchModel match)
         {
             bool checkExist=_repo.CheckExist(match.HomeTeamName,match.AwayTeamName);
             if(checkExist)
             {
                 return RedirectToAction("CreateMatch",new {checkExist=checkExist});
             }
-            await _repo.CreateMatchAsync(match);
+            var stadium=await _repo.GetStadiumIdByNameAsync(match.StadiumName);
+            var model=new Match()
+            {
+                Datetime=match.Datetime,
+                Attendance=match.Attendance,
+                StadiumID=stadium.StadiumID,
+                HomeTeamName=match.HomeTeamName,
+                AwayTeamName=match.AwayTeamName
+            };
+            await _repo.CreateMatchAsync(model);
             var matchAfter=await _repo.GetMatchWithHomeAndAwayTeamAsync(match.HomeTeamName,match.AwayTeamName);
             
             return RedirectToAction("CreateResult","Result",new {matchId=matchAfter.MatchID});
         }
+        
+        public async Task<IActionResult> GetSchedules()
+        {
+            IEnumerable<MatchSchedules> match=null;
+           
+            
+                match= await _repo.GetMatchSchedulesAsync();
+            
+
+            
+            return View(match);
+        }
+       
+        public async Task<IActionResult> GetSchedulesBy(DateTime date,int? round)
+        {
+             IEnumerable<MatchSchedules> match=null;
+            if(round==null){
+            
+                 if(DateTime.Compare(date,new DateTime(0001,1,1,0,0,0))==0)
+                 {
+                      match= await _repo.GetMatchSchedulesAsync();
+                      return View("GetSchedules",match);
+                 }
+                 else
+                 {
+                     match=await _repo.GetMatchSchedulesByDatetimeAsync(date);
+                     return View("GetSchedules",match);
+                 }
+            }
+            else
+            {
+                if(DateTime.Compare(date,new DateTime(0001,1,1,0,0,0))==0)
+                 {
+                      match= await _repo.GetMatchSchedulesByRoundAsync((int)round);
+                      return View("GetSchedules",match);
+                 }
+                 else
+                 {
+                        match= await _repo.GetMatchSchedulesByRoundAndTimeAsync((int)round,date);
+                        return View("GetSchedules",match);
+                 }
+            }
+        
+
+        }
+          
+        
     }
+
 }

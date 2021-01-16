@@ -23,8 +23,14 @@ namespace SoccerManageApp.Controllers
             {
                 await _repo.CreateStadiumAsync(model);
             }
-            var stadium=await _repo.GetStadiumByNameAsync(model.StadiumName);
+            var stadium=await _repo.GetStadiumIdByNameAsync(model.StadiumName);
             return RedirectToAction("CreateTeam","Team",new {stadiumID=stadium.StadiumID});
-;        }
+     }
+     public async Task<IActionResult> DetailStadium(string stadiumName)
+     {
+         var stadium=await _repo.GetStadiumByNameAsync(stadiumName);
+         return View(stadium);
+     }
+
     }
 }

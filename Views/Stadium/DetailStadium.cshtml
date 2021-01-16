@@ -1,4 +1,4 @@
-@model SoccerManageApp.Models.Entities.Stadium
+@model SoccerManageApp.Dtos.StadiumDetail
 @{
     ViewData["Title"]="Detail Stadium";
 }
@@ -13,8 +13,8 @@
            
             <tr>
                 <td><h4>@Model.StadiumName</h4></td>
-                <td>@Model.Team.TeamName
-                    <img src="~/Image/@Model.Team.TeamImage">
+                <td>@Model.HomeTeam
+                    <img src="~/Image/@Model.TeamImage">
                 </td>
                 <td>@Model.City</td>
                 <td>@Model.Capacity</td>
@@ -23,4 +23,4 @@
           
         </tbody>
     </table>
-    <a asp-action="Index" asp-controller="Team">Back To Teams</a>
+    <a asp-action="ListTeams" asp-controller="Team">Back To Teams</a>

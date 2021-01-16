@@ -29,5 +29,10 @@ namespace SoccerManageApp.Controllers
             var rank=await _repo.GetRankAsync();
             return View(rank);
         }
+        public IActionResult MockData()
+        {
+            _repo.CreateResultMock();
+            return Content("OK");
+        }
     }
 }

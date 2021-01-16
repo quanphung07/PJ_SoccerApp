@@ -1,0 +1,56 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> _signInManage;
+@model IEnumerable<SoccerManageApp.Dtos.MatchSchedules>
+@{
+    ViewData["Title"]="Details Match";
+}
+<form action="/Match/GetSchedulesBy" method="GET">
+<input type="datetime" placeholder="Find by date" optional name="date"/>
+<input type="number" placeholder="Find by round" name="round"/>
+<button type="submit">Search</button>
+</form>
+<table border="1" cellpadding="15">
+    <thead class="thead-dark">
+        
+        <th>Round</th>
+        <th>Match ID</th>
+        <th>Date Time</th>
+        <th>Attendance</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Stadium</th>
+        @if(User.IsInRole("Admin"))
+        {
+            <th>Admin Role</th>
+        }
+        
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Round</td>
+                <td>@item.MatchID</td>
+                <td>@item.Datetime.ToString("dd/MM/yyyy")</td>
+                <td>@item.Attendance</td>
+                <td>@item.HomeName
+                    <img src="~/Image/@item.HomeImage">
+                </td>
+                <td>@item.AwayName
+                    <img src="~/Image/@item.AwayImage">
+                </td>
+                <td>@item.StadiumName</td>
+                @if(User.IsInRole("Admin"))
+                 {
+                  <td><a href="/Result/CreateResult?matchId=@item.MatchID">Add Score</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+    @if(_signInManage.IsSignedIn(User)&&User.IsInRole("Admin"))
+    {
+        <a asp-action="CreateMatch" asp-controller="Match">Create a match</a>
+    }
+   
+</table>
+ <a href="/Match/GetSchedules">Back</a>

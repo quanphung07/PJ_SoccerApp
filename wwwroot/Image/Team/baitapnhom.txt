@@ -1,0 +1,22 @@
+insert into match(match_id,datetime,attendance,stadium_id,awayteam_name,hometeam_name)
+values
+(14,'01/08/2020',1000,2,'Chelsea','Sheffield United'),
+()---Viet tiep giong nhu dong tren vao day,bat dau tu 15
+
+
+
+
+
+insert into result (match_id,home_res,away_res)
+VALUES
+(14,1,2),
+()----viet tiep vao day . Cai match_id thì phải giống như id mà mình đã insert ở phần match
+    -----ví dụ mình insert match với match_id=14 ở trên thì mình phải insert với match_id=14 ở bảng result nhe.
+
+
+
+
+
+
+
+

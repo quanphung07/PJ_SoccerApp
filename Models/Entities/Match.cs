@@ -9,6 +9,7 @@ namespace SoccerManageApp.Models.Entities
             Scores = new HashSet<Score> ();
         }
         public int MatchID { get; set; }
+        public int Round{get;set;}
 
         [DataType (DataType.Date)]
         public DateTime Datetime { get; set; }

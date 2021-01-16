@@ -14422,6 +14422,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Stadium/DetailStadium.cshtml",
+      "TargetPath": "Views\\Stadium\\DetailStadium.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Match/ListMatches.cshtml",
       "TargetPath": "Views\\Match\\ListMatches.cshtml",
       "FileKind": "mvc"
@@ -14429,11 +14434,6 @@
     {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Result/CreateResult.cshtml",
       "TargetPath": "Views\\Result\\CreateResult.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/quanbka/SoccerManageApp/Views/Stadium/Details.cshtml",
-      "TargetPath": "Views\\Stadium\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14514,6 +14514,11 @@
     {
       "FilePath": "/home/quanbka/SoccerManageApp/Views/Match/CreateMatch.cshtml",
       "TargetPath": "Views\\Match\\CreateMatch.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/quanbka/SoccerManageApp/Views/Match/GetSchedules.cshtml",
+      "TargetPath": "Views\\Match\\GetSchedules.cshtml",
       "FileKind": "mvc"
     },
     {

@@ -12,6 +12,7 @@ namespace SoccerManageApp.Configuration {
             builder.Property (p => p.HomeTeamName).HasColumnName ("hometeam_name");
             builder.Property (p => p.AwayTeamName).HasColumnName ("awayteam_name");
             builder.Property (p => p.StadiumID).HasColumnName ("stadium_id");
+            builder.Property (p=>p.Round).HasColumnName("round");
             builder.HasKey (k => k.MatchID);
             builder.HasOne (h => h.HomeTeam).WithMany (hm => hm.HomeMatches);
             builder.HasOne (h => h.AwayTeam).WithMany (am => am.AwayMatches);

@@ -295,8 +295,30 @@ namespace SoccerManage.Data {
             return scores;
         }
 
-        public async Task<Stadium> GetStadiumByNameAsync (string name) {
-            return await _context.Stadiums.FirstOrDefaultAsync(s=>s.StadiumName==name);
+        public async Task<StadiumDetail> GetStadiumByNameAsync (string name) {
+            var connStr = DbConnection.connectionString;
+            var cmdStr = "Select * from stadium_team where stadium_name=@name";
+            StadiumDetail stadium =null;
+            using (var conn = new NpgsqlConnection (connStr)) {
+                using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    cmd.Parameters.AddWithValue ("@name", name);
+                     await conn.OpenAsync ();
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
+                        stadium=new StadiumDetail();
+                        while (rd.Read ()) {
+                            stadium.StadiumName=rd["stadium_name"].ToString();
+                            stadium.HomeTeam=rd["team_name"].ToString();
+                            stadium.Capacity=Convert.ToInt32(rd["capacity"]);
+                            stadium.City=rd["city"].ToString();
+                            stadium.TeamImage=rd["team_image"].ToString();
+                        }
+                    }
+                }
+            }
+            return stadium;
+
+                    
+
         }
 
 
@@ -596,6 +618,173 @@ namespace SoccerManage.Data {
         public bool CheckCreatedTeam(string userId)
         {
             return _context.Teams.Any(u=>u.CreatorID==userId);
+        }
+
+        public async Task<Stadium> GetStadiumIdByNameAsync(string name)
+        {
+            return await _context.Stadiums.FirstOrDefaultAsync(t=>t.StadiumName==name);
+        }
+
+        public async Task CreateResultMock()
+        {
+            var random=new Random();
+            int matchId;
+            int homeres,awayres;
+            
+              var connStr = DbConnection.connectionString;
+           for(matchId=1;matchId<=173;matchId++)
+           {
+               homeres=random.Next(0,4);
+            awayres=random.Next(0,4);
+             using (NpgsqlConnection conn = new NpgsqlConnection (connStr)) {
+                var cmdStr = "Insert into result values(@matchid,@homeres,@awayres);";
+                using (NpgsqlCommand cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    cmd.Parameters.AddWithValue ("@matchid", matchId);
+                    cmd.Parameters.AddWithValue ("@homeres", homeres);
+                    cmd.Parameters.AddWithValue ("@awayres", awayres);
+
+                    await conn.OpenAsync ();
+                     await cmd.ExecuteNonQueryAsync ();
+                }
+            }
+           }
+
+
+
+        }
+
+        public async Task<IEnumerable<MatchSchedules>> GetMatchSchedulesAsync()
+        {
+           List<MatchSchedules> matches = new List<MatchSchedules> ();
+            var connStr = DbConnection.connectionString;
+            using (NpgsqlConnection conn = new NpgsqlConnection (connStr)) {
+                var cmdStr = "select * from match_schedules";
+                using (NpgsqlCommand cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    await conn.OpenAsync ();
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
+                        while (rd.Read ()) {
+                        var match = new MatchSchedules() {
+                        MatchID = Convert.ToInt32(rd["match_id"]),
+                        Datetime = rd.GetDateTime ("datetime"),
+                        Attendance = rd.GetInt32 ("attendance"),
+                        HomeName = rd.GetString ("hometeam_name"),
+                        AwayName = rd.GetString ("awayteam_name"),
+                        StadiumName = rd.GetString ("stadium_name"),
+                        HomeImage = rd.GetString ("homae_image"),
+                        AwayImage = rd.GetString ("away_image"),
+                        Round = Convert.ToInt32(rd["round"])
+
+                            };
+                            matches.Add (match);
+                        }
+                    }
+
+                }
+            }
+
+            return matches;
+        }
+
+        public async Task<IEnumerable<MatchSchedules>> GetMatchSchedulesByDatetimeAsync(DateTime date)
+        {
+             var connStr = DbConnection.connectionString;
+            var cmdStr = "Select * from match_schedules where datetime=@datetime;";
+            var matches = new List<MatchSchedules>() ;
+            using (var conn = new NpgsqlConnection (connStr)) {
+                using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    await conn.OpenAsync();
+                    cmd.Parameters.AddWithValue ("@datetime", date);
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync()) {
+                        while (rd.Read ()) {
+                       
+                            var match = new MatchSchedules() {
+                        MatchID = Convert.ToInt32(rd["match_id"]),
+                        Datetime = rd.GetDateTime ("datetime"),
+                        Attendance = rd.GetInt32 ("attendance"),
+                        HomeName = rd.GetString ("hometeam_name"),
+                        AwayName = rd.GetString ("awayteam_name"),
+                        StadiumName = rd.GetString ("stadium_name"),
+                        HomeImage = rd.GetString ("homae_image"),
+                        AwayImage = rd.GetString ("away_image"),
+                        Round = Convert.ToInt32(rd["round"])
+
+                            };
+                            matches.Add (match);
+                        }
+                    }
+
+                }
+            }
+            return matches;
+        }
+
+        public async Task<IEnumerable<MatchSchedules>> GetMatchSchedulesByRoundAsync(int round)
+        {
+            var connStr = DbConnection.connectionString;
+            var cmdStr = "Select * from match_schedules where round=@round;";
+            var matches = new List<MatchSchedules>() ;
+            using (var conn = new NpgsqlConnection (connStr)) {
+                using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    await conn.OpenAsync();
+                    cmd.Parameters.AddWithValue ("@round", round);
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync()) {
+                        while (rd.Read ()) {
+                       
+                            var match = new MatchSchedules() {
+                        MatchID = Convert.ToInt32(rd["match_id"]),
+                        Datetime = rd.GetDateTime ("datetime"),
+                        Attendance = rd.GetInt32 ("attendance"),
+                        HomeName = rd.GetString ("hometeam_name"),
+                        AwayName = rd.GetString ("awayteam_name"),
+                        StadiumName = rd.GetString ("stadium_name"),
+                        HomeImage = rd.GetString ("homae_image"),
+                        AwayImage = rd.GetString ("away_image"),
+                        Round = Convert.ToInt32(rd["round"])
+
+                            };
+                            matches.Add (match);
+                        }
+                    }
+
+                }
+            }
+            return matches;
+        }
+
+        public async Task<IEnumerable<MatchSchedules>> GetMatchSchedulesByRoundAndTimeAsync(int round, DateTime date)
+        {
+            var connStr = DbConnection.connectionString;
+            var cmdStr = "Select * from match_schedules where round=@round and datetime=@date;";
+            var matches = new List<MatchSchedules>() ;
+            using (var conn = new NpgsqlConnection (connStr)) {
+                using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    await conn.OpenAsync();
+                    cmd.Parameters.AddWithValue ("@round", round);
+                    cmd.Parameters.AddWithValue ("@date", date);
+
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync()) {
+                        while (rd.Read ()) {
+                       
+                            var match = new MatchSchedules() {
+                        MatchID = Convert.ToInt32(rd["match_id"]),
+                        Datetime = rd.GetDateTime ("datetime"),
+                        Attendance = rd.GetInt32 ("attendance"),
+                        HomeName = rd.GetString ("hometeam_name"),
+                        AwayName = rd.GetString ("awayteam_name"),
+                        StadiumName = rd.GetString ("stadium_name"),
+                        HomeImage = rd.GetString ("homae_image"),
+                        AwayImage = rd.GetString ("away_image"),
+                        Round = Convert.ToInt32(rd["round"])
+
+                            };
+                            matches.Add (match);
+                        }
+                    }
+
+                }
+            }
+            return matches;
+        
         }
     }
     }
