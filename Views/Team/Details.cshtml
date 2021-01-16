@@ -2,63 +2,44 @@
 @{
     ViewData["Title"] = "Details";
 }
-<form method="get">
-    <input type="text" name="searchStr">
+<form asp-action="Index" method="GET">
+    <input type="hidden" readonly value="@ViewBag.teamName" name="teamName" />
+    <input type="text" name="nameCountry" placeholder="Search by country">
+    
     <button type="submit">Search</button>
 </form>
+          <h2>@ViewBag.teamName  <img src="~/Image/@ViewData["TeamImage"]"></h2>
 
+   @if(Model.Count()>0)
+   {        
 <table border="2" cellpadding="30">
     <thead>
-        <th>Team Name</th>
         <th>Players</th>
+        <th>Position</th>
+        <th>Nationality</th>
 
     </thead>
     <tbody>
-
-        <tr>
-
-            <td>
-                <h2>@ViewBag.teamName</h2>
-                <img src="~/Image/@ViewData["TeamImage"]">
-            </td>
-            <td>
-                @foreach (var item in Model)
+         @foreach (var item in Model)
                 {
-                    <ul>
-                        <li><a asp-controller="Player" asp-action="Details" asp-route-id="">
-                                <h4>@item.FirstName @item.LastName</h4>
-                            </a>(<span>Position:@item.Position</span>)
-
-                            <div style="margin-top: 20px;">
-                                <a class="btn btn-primary" asp-controller="Player" asp-action="EditPlayer"
-                                    asp-route-playerId="@item.PlayerID">Edit</a>
-                                <div id="confirmDelete_@item.PlayerID" style="display: none;">
-                                        Are you sure?
-                                    <form method="POST" asp-action="DeletePlayer" asp-controller="Player"
-                                        asp-route-playerId="@item.PlayerID">
-
-                                        <a href="#" onclick="confirm('@item.PlayerID',false)" class="btn btn-primary">No</a>
-                                        <button type="submit" class="btn btn-primary">Yes</button>
-                                    </form>
-                                </div>
-                                <span id="delete_@item.PlayerID">
-                                    <a class="btn btn-danger" onclick="confirm('@item.PlayerID',true)">Delete</a>
-                                </span>
-
-                            </div>
-                        </li>
-                        <hr />
-                    </ul>
+                    <tr>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td>@item.Position</td>
+                        <td>@item.Country
+                             <img src="~/Image/@item.CountryImage">
+                        </td>
+                    </tr>
+                        
                 }
-                <a asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName"> Add
-                    Player</a>
-            </td>
-        </tr>
 
 
     </tbody>
 </table>
 <a asp-action="ListTeams" asp-controller="Team">Back To Teams</a>
+   }else
+   {
+       <h3>No player available</h3>
+   }
 @section Scripts{
     <script src="~/js/custom.js"></script>
 }

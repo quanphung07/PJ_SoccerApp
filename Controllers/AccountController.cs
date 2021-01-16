@@ -3,15 +3,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SoccerManage.Data;
 using SoccerManageApp.Models.Account;
 
 namespace SoccerManageApp.Controllers {
     public class AccountController : Controller {
+        public static bool checkCreatedTeam=false;
+        private readonly IDataRepo _repo;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public AccountController (UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager) {
+        public AccountController (UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,IDataRepo repo) {
             _userManager = userManager;
             _signInManager = signInManager;
+            _repo=repo;
            
         }
         [AllowAnonymous]
@@ -56,6 +60,7 @@ namespace SoccerManageApp.Controllers {
         [AllowAnonymous]
          public async Task<IActionResult> Login(LoginModel model,string returnUrl)
         {
+             
             if(ModelState.IsValid)
             {
                 var user=await _userManager.FindByNameAsync(model.Username);
@@ -66,7 +71,8 @@ namespace SoccerManageApp.Controllers {
                 }
                 else if(result.Succeeded && !Url.IsLocalUrl(returnUrl))
                 {
-                   
+                    checkCreatedTeam=_repo.CheckCreatedTeam(user.Id);
+                    ViewBag.CheckCreatedTeam=checkCreatedTeam;
                     return RedirectToAction("Index","Home");
                 }
                 else

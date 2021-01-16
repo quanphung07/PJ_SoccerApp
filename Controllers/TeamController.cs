@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,9 +19,20 @@ namespace SoccerManageApp.Controllers
             _repo=repo;
             _userManager=userManager;
         }
+        public async Task<IActionResult> Index(string teamName,string nameCountry)
+        {
+            var players=await _repo.GetTeamDetailsByCountryAsync(teamName,nameCountry);
+            ViewBag.teamName=teamName;
+            var team= await _repo.GetTeamByNameAsync(teamName);
+             ViewData["TeamImage"]=team.TeamImage;
+            return View("Details",players);
+        }
         public async Task<IActionResult> ListTeams()
         {
             var teams=await _repo.GetAllTeamsAsync(); 
+            var username=User.Identity.Name;
+           
+         ViewBag.username=username;
             return View(teams);
         }
 

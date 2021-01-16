@@ -17,6 +17,8 @@ namespace SoccerManage.Data
         Task<Team> UpdateTeamAsync(Team team,string teamName);
          Task<IEnumerable<TeamDetails>> GetTeamDetailsByNameAsync(string teamName);
          Task DeleteTeamAsync(string teamName);
+        Task<IEnumerable<TeamDetails>> GetTeamDetailsByCountryAsync(string teamName,string nameCountry);
+
         
       
                 //Player Data
@@ -46,7 +48,9 @@ namespace SoccerManage.Data
         Task<IEnumerable<Score>> GetScores(int matchId);
         Task<int> CreateScoreAsync(Score score);
         //user
-        
+
+        bool CheckCreatedTeam(string userId);
+     //   bool IsCreatorOdTeam(string userId);
         
     }
 }

@@ -21,7 +21,9 @@
                 <img src="~/Image/@item.TeamImage" >
                 <hr/>
                 <span style="size: ;">
-                    <a asp-action="EditTeam" asp-route-teamName="@item.TeamName" style="margin-right: 5px;" class="btn btn-primary">Edit</a>
+                    @if(@item.TeamName.Contains(ViewBag.username))
+                    {
+                        <a asp-action="EditTeam" asp-route-teamName="@item.TeamName" style="margin-right: 5px;" class="btn btn-primary">Edit</a>
                     @if(_signInManager.IsSignedIn(User)&&User.IsInRole("Admin"))
                     {
                        <div id="confirmDelete_@item.TeamName" style="display: none;">
@@ -40,6 +42,8 @@
                        </span>
 
                     }
+                    }
+                    
                     </span>
                 </td>
                 <td><a asp-action="Details" asp-controller="Stadium" asp-route-stadiumName="@item.StadiumName">@item.StadiumName</a></td>

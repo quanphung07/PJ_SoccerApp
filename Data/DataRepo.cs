@@ -462,6 +462,7 @@ namespace SoccerManage.Data {
                             team.LastName = rd["last_name"].ToString ();
                             team.Position = rd["position"].ToString ();
                             team.CountryImage = rd["country_image"].ToString ();
+                            team.Country=rd["country"].ToString();
                             teams.Add (team);
                         }
                     }
@@ -598,5 +599,40 @@ namespace SoccerManage.Data {
             return row;
         }
 
+        public async Task<IEnumerable<TeamDetails>> GetTeamDetailsByCountryAsync(string teamName, string nameCountry)
+        {
+            var connStr = DbConnection.connectionString;
+            var cmdStr = "select * from team_details where team_name=@name and country=@country";
+            List<TeamDetails> teams = new List<TeamDetails>() ;
+            using (var conn = new NpgsqlConnection (connStr)) {
+                using (var cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    cmd.Parameters.AddWithValue ("@name", teamName);
+                    cmd.Parameters.AddWithValue ("@country", nameCountry);
+                    await conn.OpenAsync ();
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
+                        while (rd.Read ()) {
+                            var team = new TeamDetails ();
+                            team.PlayerID=Convert.ToInt32(rd["player_id"]);
+                            team.TeamName = rd["team_name"].ToString ();
+                            team.TeamImage = rd["team_image"].ToString ();
+                            team.FirstName = rd["first_name"].ToString ();
+                            team.LastName = rd["last_name"].ToString ();
+                            team.Position = rd["position"].ToString ();
+                            team.CountryImage = rd["country_image"].ToString ();
+                            team.Country=rd["country"].ToString();
+                            teams.Add (team);
+                        }
+                    }
+
+                }
+                
+            }
+            return teams;
+        }
+
+        public bool CheckCreatedTeam(string userId)
+        {
+            return _context.Teams.Any(u=>u.CreatorID==userId);
+        }
     }
     }
