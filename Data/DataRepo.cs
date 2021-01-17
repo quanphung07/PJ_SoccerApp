@@ -632,7 +632,7 @@ namespace SoccerManage.Data {
             int homeres,awayres;
             
               var connStr = DbConnection.connectionString;
-           for(matchId=1;matchId<=173;matchId++)
+           for(matchId=178;matchId<=200;matchId++)
            {
                homeres=random.Next(0,4);
             awayres=random.Next(0,4);
@@ -785,6 +785,40 @@ namespace SoccerManage.Data {
             }
             return matches;
         
+        }
+
+        public async Task<IEnumerable<MatchInfoDtos>> GetMatchSortByAsync(string sortBy)
+        {
+            List<MatchInfoDtos> matches = new List<MatchInfoDtos> ();
+            var connStr = DbConnection.connectionString;
+            using (NpgsqlConnection conn = new NpgsqlConnection (connStr)) {
+                var cmdStr = "select * from match_info_dto order by (@sortBy) asc";
+                using (NpgsqlCommand cmd = new NpgsqlCommand (cmdStr, conn)) {
+                    cmd.Parameters.AddWithValue("@sortBy",sortBy);
+                    await conn.OpenAsync ();
+                    using (NpgsqlDataReader rd = await cmd.ExecuteReaderAsync ()) {
+                        while (rd.Read ()) {
+                        var match = new MatchInfoDtos () {
+                        MatchID = Convert.ToInt32(rd["match_id"]),
+                        Datetime = rd.GetDateTime ("datetime"),
+                        Attendance = rd.GetInt32 ("attendance"),
+                        HomeName = rd.GetString ("hometeam_name"),
+                        AwayName = rd.GetString ("awayteam_name"),
+                        StadiumName = rd.GetString ("stadium_name"),
+                        HomeRes = rd.GetInt32 ("home_res"),
+                        AwayRes = rd.GetInt32 ("away_res"),
+                        HomeImage = rd.GetString ("home_image"),
+                        AwayImage = rd.GetString ("away_image")
+
+                            };
+                            matches.Add (match);
+                        }
+                    }
+
+                }
+            }
+
+            return matches.OrderBy(o=>o.Datetime);
         }
     }
     }

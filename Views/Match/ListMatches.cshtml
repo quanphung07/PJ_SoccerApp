@@ -5,13 +5,13 @@
     ViewData["Title"]="Details Match";
 }
 <form action="/Match/Index" method="GET">
-<input type="datetime" placeholder="Find by date" name="date"/>
+<input type="datetime" placeholder="Find by date:mm/dd/yyyy" name="date"/>
 <button type="submit">Search</button>
 </form>
 <table border="1" cellpadding="15">
     <thead class="thead-dark">
         <th>Match ID</th>
-        <th>Date Time</th>
+        <th><a href="/Match/SortBy?sortBy=datetime">Date time</a></th>
         <th>Attendance</th>
         <th>Home Team</th>
         <th>Away Team</th>

@@ -44,6 +44,7 @@ namespace SoccerManage.Data
         Task<IEnumerable<MatchSchedules>> GetMatchSchedulesByDatetimeAsync(DateTime date);
          Task<IEnumerable<MatchSchedules>> GetMatchSchedulesByRoundAsync(int round);
                  Task<IEnumerable<MatchSchedules>> GetMatchSchedulesByRoundAndTimeAsync(int round,DateTime date);
+                Task<IEnumerable<MatchInfoDtos>> GetMatchSortByAsync(string sortBy);
 
 
 

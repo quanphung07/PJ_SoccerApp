@@ -20,6 +20,17 @@ namespace SoccerManageApp.Controllers
             var matches=await _repo.GetMatchByDatetimeAsync(date);
             return View("ListMatches",matches);
         }
+        public async Task<IActionResult> SortBy(string sortBy)
+        {
+            IEnumerable<MatchInfoDtos> matches=null;
+            if(string.IsNullOrEmpty(sortBy))
+            {
+                 matches=await _repo.GetAllMatchAsync();
+                return View("ListMatches",matches);
+            }
+            matches=await _repo.GetMatchSortByAsync(sortBy);
+            return View("ListMatches",matches);
+        }
         public async Task<IActionResult> ListMatches()
         {
             var matches=await _repo.GetAllMatchAsync();
