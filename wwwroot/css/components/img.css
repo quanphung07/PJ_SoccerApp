@@ -1,0 +1,72 @@
+﻿.img {
+    background-size:contain;
+    background-repeat:no-repeat;
+}
+.img-team {
+    width:40px;
+    height:40px;
+    margin-right: 20px;
+}
+#logo-league {
+    background-image: url('../../content/img/Mix/PremierLeague-LogoWhite.png');
+}
+#lc1 {
+    background-image: url('../../content/img/Club/Arsenal.png');
+}
+#lc2 {
+    background-image: url('../../content/img/Club/Astonvilla.png');
+}
+#lc3 {
+    background-image: url('../../content/img/Club/Brighton.png');
+}
+#lc4 {
+    background-image: url('../../content/img/Club/Burnley.png');
+}
+#lc5 {
+    background-image: url('../../content/img/Club/Chelsea.png');
+}
+#lc6 {
+    background-image: url('../../content/img/Club/Crystalpalace.png');
+}
+#lc7 {
+    background-image: url('../../content/img/Club/Everton.png');
+}
+#lc8 {
+    background-image: url('../../content/img/Club/Fulham.png');
+}
+#lc9 {
+    background-image: url('../../content/img/Club/Leeds.png');
+}
+#lc10 {
+    background-image: url('../../content/img/Club/Leicester.png');
+}
+#lc11 {
+    background-image: url('../../content/img/Club/Liverpool.png');
+}
+#lc12 {
+    background-image: url('../../content/img/Club/Manchestercity.png');
+}
+#lc13 {
+    background-image: url('../../content/img/Club/Manchesterunited.png');
+}
+#lc14 {
+    background-image: url('../../content/img/Club/Newcastle.png');
+}
+#lc15 {
+    background-image: url('../../content/img/Club/Sheffield.png');
+}
+#lc16 {
+    background-image: url('../../content/img/Club/Southampton.png');
+}
+#lc17 {
+    background-image: url('../../content/img/Club/Tottemham.png');
+}
+#lc18 {
+    background-image: url('../../content/img/Club/Westbrom.png');
+}
+#lc19 {
+    background-image: url('../../content/img/Club/Westham.png');
+}
+#lc20 {
+    background-image: url('../../content/img/Club/Wolverhampton.png');
+}

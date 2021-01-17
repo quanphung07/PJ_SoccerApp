@@ -7,37 +7,42 @@
 @{
     int position=1;
 }
+@section Styles{ 
+    <link href="~/css/components/table.css" rel="stylesheet" />
+}
 <h3>Ranking</h3>
-<table border="1" cellpadding="15">
-    <thead class="thead-dark">
-        <th>Position</th>
-        <th>Team Name</th>
-        <th>Match Played</th>
-        <th>Win Match</th>
-        <th>Draw Match</th>
-        <th>Lost Match</th>
-        <th>Goal For</th>
-        <th>Goal Against</th>
-        <th>Point</th>
-        
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="content-grid">
+    <table class="table-def" width="100%" border="0" cellspacing="0">
+        <thead>
             <tr>
-                <td>@position</td>
-                <td><a href="/Team/Details?teamName=@item.TeamName"><img src="~/Image/@item.TeamImage"> @item.TeamName</a></td>
-                <td>@item.MatchPlayed</td>
-                <td>@item.WinMatch</td>
-                <td>@item.DrawMatch</td>
-                <td>@item.LoseMatch</td>
-                <td>@item.GoalFor</td>
-                 <td>@item.GoalAgainst</td>
-                <td>@item.Point</td>
+                <th>Position</th>
+                <th>Team Name</th>
+                <th>Played</th>
+                <th>Won</th>
+                <th>Drawn</th>
+                <th>Lost</th>
+                <th>GF</th>
+                <th>GA</th>
+                <th>Points</th>
             </tr>
-             position++;
-        }
-       
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@position</td>
+                    <td style="text-align:left"><a href="/Team/Details?teamName=@item.TeamName"><span><img class="img-team" src="~/Image/@item.TeamImage"></span><span>@item.TeamName</span></a></td>
+                    <td>@item.MatchPlayed</td>
+                    <td>@item.WinMatch</td>
+                    <td>@item.DrawMatch</td>
+                    <td>@item.LoseMatch</td>
+                    <td>@item.GoalFor</td>
+                    <td>@item.GoalAgainst</td>
+                    <td>@item.Point</td>
+                </tr>position++;
+                            }
+        </tbody>
+    </table>
+</div>
+
 <a class="btn btn-primary" href="/Match/ListMatches" >Back</a>

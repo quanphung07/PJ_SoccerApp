@@ -1,0 +1,137 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> _signInManager;
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SoccerManageApp</title>
+    <link href="~/css/layout/Layout1.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @RenderSection("Styles", false)
+    @*@RenderSection("ScriptsWrite",false)*@
+</head>
+
+<body>
+    <div class="header">
+        <div class="club-list">
+            <ul>
+                <li class="img" id="lc1"></li>
+                <li class="img" id="lc2"></li>
+                <li class="img" id="lc3"></li>
+                <li class="img" id="lc4"></li>
+                <li class="img" id="lc5"></li>
+                <li class="img" id="lc6"></li>
+                <li class="img" id="lc7"></li>
+                <li class="img" id="lc8"></li>
+                <li class="img" id="lc9"></li>
+                <li class="img" id="lc10"></li>
+                <li class="img" id="lc11"></li>
+                <li class="img" id="lc12"></li>
+                <li class="img" id="lc13"></li>
+                <li class="img" id="lc14"></li>
+                <li class="img" id="lc15"></li>
+                <li class="img" id="lc16"></li>
+                <li class="img" id="lc17"></li>
+                <li class="img" id="lc18"></li>
+                <li class="img" id="lc19"></li>
+                <li class="img" id="lc20"></li>
+            </ul>
+        </div>
+        <div class="show-tab">
+            <div class="img" id="logo-league"></div>
+            <div class="more">
+                <ul>
+                    <li>Premier League</li>
+                    <li>Fantasy</li>
+                    <li>Video</li>
+                    <li>Comunities</li>
+                    <li>More <i class="fa fa-chevron-circle-down" aria-hidden="true"></i></li>
+                </ul>
+            </div>
+            <div class="login">
+                <ul>
+                    @*nếu không phải là user thì có phải login*@
+                    @if (!_signInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <a asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                        </li>
+                    }
+                    else @*nếu phải thì hiện ra button chào user*@
+                    {
+                        <li>Hello, @User.Identity.Name</li>
+                        <li>
+                            <form action="/Account/Logout" method="POST">
+                                <button type="submit" class="btn-def" id="btn-logout">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    @*nếu không phải user thì phải đăng ký*@
+                    @*@if (_signInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <a style="pointer-events: none;" asp-area="" asp-controller="Account"
+                               asp-action="Register">Register</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-area="" asp-controller="Account"
+                               asp-action="Register">Register</a>
+                        </li>
+                    }*@
+                    @* nếu là user hoặc admin thì hiện ra dropdown vai trò*@
+                    @*@if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                AdminManage
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a href="/Admin/ListRoles" class="dropdown-item">Roles</a>
+                                <a href="/Admin/ListUsers" class="dropdown-item">Users</a>
+                            </div>
+                        </div>
+                    }*@
+                </ul>
+            </div>
+        </div>
+        <div class="show-menu">
+            <ul>
+                <li>
+                    <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Team" asp-action="ListTeams">Teams</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Match" asp-action="ListMatches">Matches</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Result" asp-action="Ranking">Ranking</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Stadium" asp-action="CreateStadium">Create Team</a>
+                </li>
+            </ul>
+        </div>      
+    </div>
+    <div class="body-layout">
+            @RenderBody()
+    </div>
+    <div class="footer">
+        <p>Frontend Create by VVLONG - SoccerManageApp </p>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

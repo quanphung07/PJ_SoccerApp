@@ -1,28 +1,74 @@
 @model SoccerManageApp.Models.Account.LoginModel
+@section Styles{
+    <link href="~/css/page/Login.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+  @*  <link href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i" rel="stylesheet">*@
+}
+@section Scripts{
 
-<div class="login">
-    <div id="title">Login</div>
-    <form method="POST">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Username"> </label>
-        <input type="text" class="form-controll" asp-for="Username">
-        <div> <span asp-validation-for="Username" class="text-danger"></span>
-</div>
-    </div>
-     <div class="form-group">
-        <label asp-for="Password"> </label>
-        <input type="text" class="form-controll" asp-for="Password">
-        <div> <span asp-validation-for="Password" class="text-danger"></span>
-</div>
-    </div>
-    <div id="remember" class="form-group">
-        <input type="checkbox" asp-for="RememberMe">
-        <label asp-for="RememberMe"> </label>
-    </div>
-    <div class="form-group">
-        <button type="submit">Login</button>
-        <a href="/Account/Register" >Register</a>
-    </div>
-</form>
+    @*<script src="~/js/index.js"></script>
+    <script src="~/js/particles.min.js"></script>*@
+}
+
+<div class="img" id="bg-header-login">YOUR ACCOUNT</div>
+<!--<form method="POST">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Username"></label>
+            <input type="text" class="form-controll" asp-for="Username">
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+         <div class="form-group">
+            <label asp-for="Password"></label>
+            <input type="text" class="form-controll" asp-for="Password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" class="form-controll" asp-for="RememberMe">
+            <label asp-for="RememberMe"></label>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+    </form>-->
+@*========================================*@
+<div class="login-view-content">
+    <form class="form-login" method="post">
+        <div class="title"><p>Sign In</p></div>
+        <div class="enter-account">
+                <div class="input-def username">
+                    <label asp-for="Username">Email Address or Username</label>
+                    <input type="text" asp-for="Username" placeholder="Your Address" />
+                </div>
+                <div class="input-def password">
+                    <label asp-for="Password">Password</label>
+                    <input type="password" asp-for="Password" placeholder="Password" />
+                </div>
+                <div class="forgot-signin">
+                    <div class="forgot"><a href="#">Forgot login details?</a></div>
+                    <button class="btn-def" type="submit" id="btn-sgin">Sign in</button>
+                </div>
+                <div class="or-login-with"><span>or login with</span></div>
+        </div>
+        <div class="social-login">
+                <a class="btn-def btn-link" id="btn-facebook" href="#"><i class="fa fa-facebook" aria-hidden="true" style="color:#ffffff;font-size:18px; margin-right:10px"></i>Facebook</a>
+                <a class="btn-def btn-link" id="btn-twitter" href="#"><i class="fa fa-twitter" aria-hidden="true" style="color:#ffffff;font-size:18px;margin-right:10px"></i>Twitter</a>
+                <a class="btn-def btn-link" id="btn-google" href="#"><i class="fa fa-google-plus" aria-hidden="true" style="color:#ffffff;font-size:18px;margin-right:10px"></i>Google</a>
+                <a class="btn-def btn-link" id="btn-apple" href="#"><i class="fa fa-apple" aria-hidden="true" style="color:#ffffff;font-size:18px;margin-right:10px"></i>Apple</a>
+        </div>
+    </form>
+    <form class="form-register" action="/" method="post">
+        <div class="title"><p>Register</p></div>
+        <div class="reg-spacer">
+            <h2>Don't have a Premier League account?</h2>
+            <p>In that case, you are missing out on:</p>
+            <ul>
+                <li>Fantasy Premier League football game</li>
+                <li>Exclusive fan services</li>
+                <li>Customised site content</li>
+                <li>Favourite Club information and notifications</li>
+            </ul>
+            <a class="btn-def btn-link" id="btn-reg" href="#">Register</a>
+        </div>
+    </form>
 </div>

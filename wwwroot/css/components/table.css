@@ -1,0 +1,42 @@
+﻿.content-grid {
+    width: 80%;
+    height: auto;
+    margin: 0px auto;
+}
+.table-def {
+    width: 100%;
+    height: 500px;
+    box-sizing:border-box;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    border-right: 1px solid #fbfbfb;
+    border-left: 1px solid #fbfbfb;
+}
+    .table-def thead {
+        color: #6c6c6c;
+        font-weight: 400;
+        background-color: #fbfbfb;
+    }
+        .table-def thead tr {
+            height:50px;
+
+        }
+    .table-def tbody tr {
+        height:50px;
+        background-color:#ffffff;
+        border-bottom:1px solid #fbfbfb;
+    }
+    .table-def td, th {
+        max-width: 150px;
+        padding: 10px 20px;
+        white-space: nowrap;
+        text-align: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-bottom: 1px solid #bbbbbb;
+    }
+        .table-def td a {
+            color: #6c6c6c;
+            align-items:center;
+            display:flex;
+        } 

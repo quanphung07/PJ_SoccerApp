@@ -1,0 +1,101 @@
+﻿#bg-header-login {
+    width: 100%;
+    height: 150px;
+    background-image: url(../../content/img/Mix/heading-bg-desktop.svg);
+    background-color: #37003c;
+    background-size: cover;
+    color: #ffffff;
+    padding: 45px 30px;
+    margin-bottom:30px;
+    font-size: 50px;
+    font-weight: 900;
+    box-sizing: border-box;
+}
+
+.login-view-content {
+    width: 1000px;
+    height: auto;
+    position: relative;
+    display: flex;
+    margin: 0px auto;
+    box-sizing: border-box;
+}
+    .login-view-content .title {
+        width: 100%;
+        height: 40px;
+        background-color: #e90052;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: normal;
+        padding: 0px 20px;
+        box-sizing: border-box;
+        margin-bottom: 30px;
+        line-height: 2;
+        text-align: center;
+    }
+
+    .form-login {
+        width: 50%;
+        height: auto;
+        position: relative;
+    }
+
+    .form-login .enter-account {
+        padding: 0px 10px 0px 20px;
+    }
+
+        .enter-account .forgot-signin {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+                
+        }
+            .forgot-signin a {
+                color: #e90052;
+                font-weight:bold;
+            }
+        .enter-account .or-login-with {
+            width: 75%;
+            margin: 0 auto 25px auto;
+            box-sizing:border-box;
+            text-align: center;
+            border-bottom: 1px solid #e4e4e4;
+        }
+            .or-login-with span {
+                background: #fff;
+                padding: 7px;
+                position: relative;
+                top: 7px;
+            }
+    .form-login .social-login {
+        width:auto;
+        height:auto;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        margin:0px 10px 20px 20px;
+    }
+    .form-register {
+        width: 50%;
+        height: auto;
+        position: relative;
+    }
+        .form-register .reg-spacer {
+            background-color: #e4e4e4;
+            padding: 25px;
+            margin: 0px 20px 0px 20px;
+            display: inline-block;
+            width: calc(100% - 40px);
+            box-sizing:border-box;
+        }
+.reg-spacer p {
+    margin-bottom:25px;
+}
+    .reg-spacer ul {
+        display:inline-block;
+        margin: 0 0 25px 0;
+    }
+        .reg-spacer ul li {
+            font-weight: bold;
+            margin: 0 0 5px 20px;
+        }
