@@ -2,46 +2,60 @@
 @{
     ViewData["Title"] = "Details";
 }
-<form asp-action="Index" method="GET">
-    <input type="hidden" readonly value="@ViewBag.teamName" name="teamName" />
-    <input type="text" name="nameCountry" placeholder="Search by country">
-    
-    <button type="submit">Search</button>
-</form>
-          <h2>@ViewBag.teamName  <img src="~/Image/@ViewData["TeamImage"]"></h2>
-
-   @if(Model.Count()>0)
-   {        
-<table border="2" cellpadding="30">
-    <thead>
-        <th>Players</th>
-        <th>Position</th>
-        <th>Nationality</th>
-
-    </thead>
-    <tbody>
-         @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.FirstName @item.LastName</td>
-                        <td>@item.Position</td>
-                        <td>@item.Country
-                             <img src="~/Image/@item.CountryImage">
-                        </td>
-                    </tr>
-                        
-                }
-                 <a href="/Player/CreatePlayer">Add Player</a>
-
-
-    </tbody>
-</table>
-<a asp-action="ListTeams" asp-controller="Team">Back To Teams</a>
-   }else
-   {
-       <h3>No player available</h3>
-       <a href="/Player/CreatePlayer?teamName=@ViewBag.teamName">Add Player</a>
-   }
-@section Scripts{
-    <script src="~/js/custom.js"></script>
+@section Styles{
+    <link href="~/css/page/Details.css" rel="stylesheet" />
 }
+<form class="search" asp-action="Index" method="GET">
+    <input class="input-filter" type="hidden" readonly value="@ViewBag.teamName" name="teamName" />
+    <input class="input-filter" type="text" name="nameCountry" placeholder="Search by country">
+    <button class="btn-def" id="btn-search" type="submit">Search</button>
+</form>
+
+<div class="team-name">
+    <div><img src="~/Image/@ViewData["TeamImage"]"></div>
+    <h1>@ViewBag.teamName</h1>
+</div>
+
+@if (Model.Count() > 0)
+{
+    <div class="button-team">
+        <button class="btn-def" id="btn-back"><a asp-action="ListTeams" asp-controller="Team">Back To Teams</a></button>
+        <button class="btn-def" id="btn-create"><a href="/Player/CreatePlayer">Add Player</a></button>
+    </div>
+        <div style="width: 60%" class="content-grid">
+            <table class="table-def" border="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Players</th>
+                        <th>Position</th>
+                        <th>Nationality</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FirstName @item.LastName</td>
+                            <td>@item.Position</td>
+                            <td>
+                                <a href="#">
+                                    <span><img class="img-team" src="~/Image/@item.CountryImage"></span>
+                                    <span>@item.Country</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        }
+        else
+        {
+        <h3>No player available</h3>
+        <button class="btn-def" id="btn-create"><a href="/Player/CreatePlayer?teamName=@ViewBag.teamName">Add Player</a></button>
+        }
+        @section Scripts{
+            <script src="~/js/custom.js"></script>
+        }

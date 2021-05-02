@@ -18,13 +18,25 @@
     padding-top: 10px;
     box-sizing: border-box;
 }
-
+#btn-create {
+    background-color: #37003c;
+}
+#btn-edit {
+    background-color: #2b5e9d;
+}
+#btn-back {
+    background-color:#2b5e9d;
+}
 #btn-sgin {
     width: calc(50% - 5px);
     background-color: #37003c;
     margin-left: auto;
 }
-
+#btn-search {
+    width: 60px;
+    height:50px;
+    background-color: #37003c
+}
 #btn-facebook {
     background-color: #2b5e9d;
 }

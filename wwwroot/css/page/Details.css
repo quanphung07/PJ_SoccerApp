@@ -1,0 +1,39 @@
+﻿a {
+    color: #ffffff;
+    font-weight: 600;
+}
+.search {
+    width: auto;
+    height: 50px;
+    margin: 20px 0px 20px 200px;
+}
+.input-filter {
+    margin-right:10px;
+}
+.button-team {
+    display:flex;
+    margin-bottom:20px;
+}
+#btn-back {
+    width: 200px;
+    margin-left: 745px ;
+    margin-right:10px;
+}
+#btn-create {
+    width:200px;
+}
+.team-name {
+    width: 200px;
+    height: auto;
+    margin: 20px auto;
+}
+    .team-name div {
+        width: fit-content;
+        margin: 10px auto;
+    }
+    .team-name img {
+        width:60px;
+    }
+    .team-name h1 {
+        text-align:center;
+    }

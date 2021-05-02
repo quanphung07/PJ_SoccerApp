@@ -2,43 +2,56 @@
 @inject SignInManager<IdentityUser> _signInManage;
 @model IEnumerable<SoccerManageApp.Dtos.MatchInfoDtos>
 @{
-    ViewData["Title"]="Details Match";
+    ViewData["Title"] = "Details Match";
 }
-<form action="/Match/Index" method="GET">
-<input type="datetime" placeholder="Find by date:mm/dd/yyyy" name="date"/>
-<button type="submit">Search</button>
+@section Styles{
+    <link href="~/css/components/table.css" rel="stylesheet" />
+    <link href="~/css/page/ListMatches.css" rel="stylesheet" />
+}
+<form class="search" action="/Match/Index" method="GET">
+    <input class="input-filter" type="datetime" placeholder="Find by date:mm/dd/yyyy" name="date" />
+    <button class="btn-def" id="btn-search" type="submit">Search</button>
 </form>
-<table border="1" cellpadding="15">
-    <thead class="thead-dark">
-        <th>Match ID</th>
-        <th><a href="/Match/SortBy?sortBy=datetime">Date time</a></th>
-        <th>Attendance</th>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Stadium</th>
-        <th>Result</th>
-        
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+@if (_signInManage.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <button class="btn-def" id="btn-create"><a asp-action="CreateMatch" asp-controller="Match">Create a match</a></button>
+}
+<div class="content-grid">
+    <table class="table-def" width="100%" border="0" cellspacing="0">
+        <thead class="thead-dark">
             <tr>
-                <td>@item.MatchID</td>
-                <td>@item.Datetime.ToString("dd/MM/yyyy")</td>
-                <td>@item.Attendance</td>
-                <td>@item.HomeName
-                    <img src="~/Image/@item.HomeImage">
-                </td>
-                <td>@item.AwayName
-                    <img src="~/Image/@item.AwayImage">
-                </td>
-                <td>@item.StadiumName</td>
-                <td><a asp-action="Details" asp-controller="Score" asp-route-matchId="@item.MatchID">@item.HomeRes - @item.AwayRes</a></td>
+                <th>Match ID</th>
+                <th><a href="/Match/SortBy?sortBy=datetime">Date time</a></th>
+                <th>Attendance</th>
+                <th>Home Team</th>
+                <th>Result</th>
+                <th>Away Team</th>
+                <th>Stadium</th>
             </tr>
-        }
-    </tbody>
-    @if(_signInManage.IsSignedIn(User)&&User.IsInRole("Admin"))
-    {
-        <a asp-action="CreateMatch" asp-controller="Match">Create a match</a>
-    }
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MatchID</td>
+                    <td>@item.Datetime.ToString("dd/MM/yyyy")</td>
+                    <td>@item.Attendance</td>
+                    <td>
+                        <a style="text-align:right" href="/Team/Details?teamName=@item.HomeName">
+                            <span style="margin-left:auto">@item.HomeName</span>
+                            <span><img class="img-team" src="~/Image/@item.HomeImage"></span>
+                        </a>
+                    </td>
+                    <td><a style="justify-content: center" asp-action="Details" asp-controller="Score" asp-route-matchId="@item.MatchID">@item.HomeRes - @item.AwayRes</a></td>
+                    <td>
+                        <a style="text-align:left" href="/Team/Details?teamName=@item.AwayName">
+                            <span><img class="img-team" src="~/Image/@item.AwayImage"></span>
+                            <span>@item.AwayName</span>
+                        </a>
+                    </td>
+                    <td>@item.StadiumName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

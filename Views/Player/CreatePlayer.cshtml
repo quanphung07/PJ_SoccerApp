@@ -1,57 +1,62 @@
 @model SoccerManageApp.Models.Entities.Player
 @{
-    ViewData["Title"]="Create Player";
+    ViewData["Title"] = "Create Player";
 }
-<h3> Add player for <span class="text-danger">@ViewBag.teamName </span>club</h3>
-<form asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName" method="POST">
-    <div class="form-group">
-        <label asp-for="@Model.FirstName">Firstname</label>
-        <input asp-for="@Model.FirstName" type="text">
-        <span asp-validation-for="@Model.FirstName"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.LastName">Lastname</label>
-        <input asp-for="@Model.LastName" type="text">
-        <span asp-validation-for="@Model.LastName"></span>
-    </div>
-     <div class="form-group">
-        <label asp-for="@Model.Age">Age</label>
-        <input asp-for="@Model.Age" type="number">
-        <span asp-validation-for="@Model.Age"></span>
-    </div>
-     <div class="form-group">
-        <label asp-for="@Model.Kit">Kit Number</label>
-        <input asp-for="@Model.Kit" type="number">
-        <span asp-validation-for="@Model.Kit"></span>
-    </div>
-   
-    <div class="form-group">
-        <label asp-for="@Model.Position">Position</label>
-        <input asp-for="@Model.Position" type="text">
-        <span asp-validation-for="@Model.Position"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.Country">Country</label>
-        <input asp-for="@Model.Country" type="text">
-        <span asp-validation-for="@Model.Country"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.TeamName">Team Name</label>
-        <input asp-for="@Model.TeamName" value="@ViewBag.teamName" readonly type="text">
-        <span asp-validation-for="@Model.TeamName"></span>
-    </div>
+@section Styles{
 
-    <div class="form-group">
-        <label asp-for="@Model.CountryImage">Country Image</label>
-        <input asp-for="@Model.CountryImage" type="text">
-        <span asp-validation-for="@Model.CountryImage"></span>
-    </div>
+    <link href="~/css/page/CreateMatches.css" rel="stylesheet" />
+}
+<h2> Add player for <span class="text-danger">@ViewBag.teamName </span>club</h2>
+<div class="form-create">
+    <form asp-action="CreatePlayer" asp-controller="Player" asp-route-teamName="@ViewBag.teamName" method="POST">
+        <div class="input-def">
+            <label asp-for="@Model.FirstName">Firstname</label>
+            <input asp-for="@Model.FirstName" type="text">
+            <span asp-validation-for="@Model.FirstName"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.LastName">Lastname</label>
+            <input asp-for="@Model.LastName" type="text">
+            <span asp-validation-for="@Model.LastName"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.Age">Age</label>
+            <input asp-for="@Model.Age" type="number">
+            <span asp-validation-for="@Model.Age"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.Kit">Kit Number</label>
+            <input asp-for="@Model.Kit" type="number">
+            <span asp-validation-for="@Model.Kit"></span>
+        </div>
 
-    <div class="form-group">
-        
-        <button class="btn btn-primary" type="submit">Create</button>
-        <a href="/Team/ListTeams" class="btn btn-primary">Back</a>
-        
-    </div>
-</form>
+        <div class="input-def">
+            <label asp-for="@Model.Position">Position</label>
+            <input asp-for="@Model.Position" type="text">
+            <span asp-validation-for="@Model.Position"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.Country">Country</label>
+            <input asp-for="@Model.Country" type="text">
+            <span asp-validation-for="@Model.Country"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.TeamName">Team Name</label>
+            <input asp-for="@Model.TeamName" value="@ViewBag.teamName" readonly type="text">
+            <span asp-validation-for="@Model.TeamName"></span>
+        </div>
+
+        <div class="input-def">
+            <label asp-for="@Model.CountryImage">Country Image</label>
+            <input asp-for="@Model.CountryImage" type="text">
+            <span asp-validation-for="@Model.CountryImage"></span>
+        </div>
+
+        <div>
+            <button class="btn-def" id="btn-create" type="submit">Create</button>
+            <button class="btn-def" id="btn-back"><a href="/Team/ListTeams" class="btn btn-primary">Back</a></button>
+        </div>
+    </form>
+</div>
+
 

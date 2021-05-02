@@ -87,7 +87,7 @@
                         </li>
                     }*@
                     @* nếu là user hoặc admin thì hiện ra dropdown vai trò*@
-                    @*@if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                   @* @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                     {
                         <div class="dropdown">
                             <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -117,7 +117,7 @@
                     <a asp-area="" asp-controller="Result" asp-action="Ranking">Ranking</a>
                 </li>
                 <li>
-                    <a asp-area="" asp-controller="Stadium" asp-action="CreateStadium">Create Team</a>
+                    <a asp-area="" asp-controller="Match" asp-action="GetSchedules">Schedules</a>
                 </li>
             </ul>
         </div>      
@@ -126,7 +126,7 @@
             @RenderBody()
     </div>
     <div class="footer">
-        <p>Frontend Create by VVLONG - SoccerManageApp </p>
+        <p>SoccerManageApp Create By Vũ Văn Long - Phùng Xuân Quân - Nguyễn Minh Chương</p>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,44 +1,49 @@
 @model SoccerManageApp.Dtos.CreateMatchModel
 @{
-    ViewData["Title"]="Create Match";
+    ViewData["Title"] = "Create Match";
 }
-@if(ViewBag.CheckExist)
-{
-    <h2 class="text-danger">Match existed</h2>
+@section Styles{
+
+    <link href="~/css/page/CreateMatches.css" rel="stylesheet" />
 }
-<form asp-action="CreateMatch" asp-controller="Match" method="POST">
-    <div class="form-group">
-        <label asp-for="@Model.Datetime">Date Time</label>
-        <input asp-for="@Model.Datetime" type="datetime">
-        <span asp-validation-for="@Model.Datetime"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.Attendance">Attendance</label>
-        <input asp-for="@Model.Attendance" type="number">
-        <span asp-validation-for="@Model.Attendance"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.HomeTeamName">Home Team </label>
-        <input asp-for="@Model.HomeTeamName" type="text">
-        <span asp-validation-for="@Model.HomeTeamName"></span>
-    </div>
-     <div class="form-group">
-        <label asp-for="@Model.AwayTeamName">Away Team</label>
-        <input asp-for="@Model.AwayTeamName" type="text">
-        <span asp-validation-for="@Model.AwayTeamName"></span>
-    </div>
+<div class="form-create">
+    @if (ViewBag.CheckExist)
+    {
+        <h2 class="text-danger">Match existed</h2>
+    }
+    <form asp-action="CreateMatch" asp-controller="Match" method="POST">
+        <div class="input-def">
+            <label asp-for="@Model.Datetime">Date Time</label>
+            <input asp-for="@Model.Datetime" type="datetime">
+            <span asp-validation-for="@Model.Datetime"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.Attendance">Attendance</label>
+            <input asp-for="@Model.Attendance" type="number">
+            <span asp-validation-for="@Model.Attendance"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.HomeTeamName">Home Team </label>
+            <input asp-for="@Model.HomeTeamName" type="text">
+            <span asp-validation-for="@Model.HomeTeamName"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.AwayTeamName">Away Team</label>
+            <input asp-for="@Model.AwayTeamName" type="text">
+            <span asp-validation-for="@Model.AwayTeamName"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="@Model.StadiumName">Stadium Name</label>
-        <input asp-for="@Model.StadiumName" type="Name">
-        <span asp-validation-for="@Model.StadiumName"></span>
-    </div>
+        <div class="input-def">
+            <label asp-for="@Model.StadiumName">Stadium Name</label>
+            <input asp-for="@Model.StadiumName" type="text">
+            <span asp-validation-for="@Model.StadiumName"></span>
+        </div>
 
-    <div class="form-group">
-        
-        <button type="submit" class="btn bnt-primary" >Create</button>
-        <a href="/Match/ListMatches" class="btn btn-primary">Back</a>
-        
-    </div>
-</form>
+        <div>
+            <button type="submit" class="btn-def" id="btn-create">Create</button>
+            <button class="btn-def" id="btn-back"><a href="/Match/ListMatches">Back</a></button>
+        </div>
+    </form>
+</div>
+
 

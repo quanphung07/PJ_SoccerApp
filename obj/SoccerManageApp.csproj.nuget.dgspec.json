@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\study\\project_CSDL\\SoccerManageApp.csproj": {}
+    "E:\\Study\\SoccerManageApp\\SoccerManageApp.csproj": {}
   },
   "projects": {
-    "E:\\study\\project_CSDL\\SoccerManageApp.csproj": {
+    "E:\\Study\\SoccerManageApp\\SoccerManageApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\study\\project_CSDL\\SoccerManageApp.csproj",
+        "projectUniqueName": "E:\\Study\\SoccerManageApp\\SoccerManageApp.csproj",
         "projectName": "SoccerManageApp",
-        "projectPath": "E:\\study\\project_CSDL\\SoccerManageApp.csproj",
+        "projectPath": "E:\\Study\\SoccerManageApp\\SoccerManageApp.csproj",
         "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
-        "outputPath": "E:\\study\\project_CSDL\\obj\\",
+        "outputPath": "E:\\Study\\SoccerManageApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -2,13 +2,14 @@
     width: 80%;
     height: auto;
     margin: 0px auto;
+    opacity:0.95;
 }
-.table-def {
+.content-grid .table-def {
     width: 100%;
-    height: 500px;
+    height: auto;
     box-sizing:border-box;
     overflow-x: scroll;
-    overflow-y: scroll;
+    overflow-y: hidden;
     border-right: 1px solid #fbfbfb;
     border-left: 1px solid #fbfbfb;
 }
@@ -37,6 +38,6 @@
     }
         .table-def td a {
             color: #6c6c6c;
-            align-items:center;
-            display:flex;
-        } 
+            align-items: center;
+            display: flex;
+        }

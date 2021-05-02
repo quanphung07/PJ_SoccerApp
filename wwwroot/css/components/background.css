@@ -1,0 +1,8 @@
+﻿.Background {
+    width:100%;
+    min-height:1000px;
+}
+#Schedules {
+    background-image: url('../../Image/Mix/GettyImages-847454986.jpg');
+    background-size:contain;
+}

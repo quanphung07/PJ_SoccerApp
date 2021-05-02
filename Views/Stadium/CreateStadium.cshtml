@@ -1,26 +1,29 @@
 @model SoccerManageApp.Models.Entities.Stadium
-
+@section Styles{
+    <link href="~/css/page/CreateMatches.css" rel="stylesheet" />
+}
 <h3>Create Stadium</h3>
-<form method="POST" action="/Stadium/CreateStadium">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="@Model.StadiumName">Stadium Name</label>
-        <input type="text" asp-for="@Model.StadiumName"/>
-        <span asp-validation-for="@Model.StadiumName"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.Capacity"></label>
-        <input type="number" asp-for="@Model.Capacity"/>
-        <span asp-validation-for="@Model.Capacity"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="@Model.City"></label>
-        <input type="text" asp-for="@Model.City"/>
-        <span asp-validation-for="@Model.City"></span>
-    </div>
-    <div class="form-group">
-       <button type="submit" class="btn btn-primary">Create</button>
-        <a href="/Home/Index" class="btn btn-primary">Back</a>
-    </div>
-
-</form>
+<div class="form-create">
+    <form method="POST" action="/Stadium/CreateStadium">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="input-def">
+            <label asp-for="@Model.StadiumName">Stadium Name</label>
+            <input type="text" asp-for="@Model.StadiumName" />
+            <span asp-validation-for="@Model.StadiumName"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.Capacity"></label>
+            <input type="number" asp-for="@Model.Capacity" />
+            <span asp-validation-for="@Model.Capacity"></span>
+        </div>
+        <div class="input-def">
+            <label asp-for="@Model.City"></label>
+            <input type="text" asp-for="@Model.City" />
+            <span asp-validation-for="@Model.City"></span>
+        </div>
+        <div>
+            <button type="submit" class="btn-def" id="btn-create">Create</button>
+            <button class="btn-def" id="btn-back"></button><a href="/Home/Index" class="btn btn-primary">Back</a>
+        </div>
+    </form>
+</div>

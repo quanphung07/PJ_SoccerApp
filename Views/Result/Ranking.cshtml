@@ -1,16 +1,12 @@
 @using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> _signInManage;
 @model IEnumerable<SoccerManageApp.Dtos.RankingDto>
-@{
-    ViewData["Title"]="Details Match";
-}
-@{
-    int position=1;
-}
-@section Styles{ 
+@{ ViewData["Title"] = "Details Match"; }
+@{ int position = 1; }
+@section Styles{
     <link href="~/css/components/table.css" rel="stylesheet" />
 }
-<h3>Ranking</h3>
+<h2 style="text-align:center">Ranking</h2>
 <div class="content-grid">
     <table class="table-def" width="100%" border="0" cellspacing="0">
         <thead>
@@ -29,20 +25,20 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@position</td>
-                    <td style="text-align:left"><a href="/Team/Details?teamName=@item.TeamName"><span><img class="img-team" src="~/Image/@item.TeamImage"></span><span>@item.TeamName</span></a></td>
-                    <td>@item.MatchPlayed</td>
-                    <td>@item.WinMatch</td>
-                    <td>@item.DrawMatch</td>
-                    <td>@item.LoseMatch</td>
-                    <td>@item.GoalFor</td>
-                    <td>@item.GoalAgainst</td>
-                    <td>@item.Point</td>
-                </tr>position++;
-                            }
+<tr>
+    <td>@position</td>
+    <td style="text-align:left"><a href="/Team/Details?teamName=@item.TeamName"><span><img class="img-team" src="~/Image/@item.TeamImage"></span><span>@item.TeamName</span></a></td>
+    <td>@item.MatchPlayed</td>
+    <td>@item.WinMatch</td>
+    <td>@item.DrawMatch</td>
+    <td>@item.LoseMatch</td>
+    <td>@item.GoalFor</td>
+    <td>@item.GoalAgainst</td>
+    <td>@item.Point</td>
+</tr>
+position++;
+}
         </tbody>
     </table>
 </div>
 
-<a class="btn btn-primary" href="/Match/ListMatches" >Back</a>

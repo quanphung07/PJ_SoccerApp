@@ -1,25 +1,29 @@
 @model SoccerManageApp.Models.Entities.Result
+@section Styles{
 
-<form asp-action="CreateResult" asp-controller="Result" asp-route-matchId="@ViewBag.matchId" method="POST">
-        <div class="form-group">
-        <label asp-for="@Model.MatchID">MatchID</label>
-        <input asp-for="@Model.MatchID" readonly type="number">
-        <span asp-validation-for="@Model.MatchID"></span>
-    </div>
+    <link href="~/css/page/CreateMatches.css" rel="stylesheet" />
+}
+<div class="form-create">
+    <form asp-action="CreateResult" asp-controller="Result" asp-route-matchId="@ViewBag.matchId" method="POST">
+        <div class="input-def">
+            <label asp-for="@Model.MatchID">MatchID</label>
+            <input asp-for="@Model.MatchID" readonly type="number">
+            <span asp-validation-for="@Model.MatchID"></span>
+        </div>
 
-       <div class="form-group">
-        <label asp-for="@Model.Homeres">Home Result</label>
-        <input asp-for="@Model.Homeres" type="number">
-        <span asp-validation-for="@Model.Homeres"></span>
-    </div>
+        <div class="input-def">
+            <label asp-for="@Model.Homeres">Home Result</label>
+            <input asp-for="@Model.Homeres" type="number">
+            <span asp-validation-for="@Model.Homeres"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="@Model.Awayres">Away Result</label>
-        <input asp-for="@Model.Awayres" type="number">
-        <span asp-validation-for="@Model.Awayres"></span>
-    </div>
-    <div>
-        <button class="btn btn-primary" type="submit">Create</button>
-
-    </div>
-</form>
+        <div class="input-def">
+            <label asp-for="@Model.Awayres">Away Result</label>
+            <input asp-for="@Model.Awayres" type="number">
+            <span asp-validation-for="@Model.Awayres"></span>
+        </div>
+        <div>
+            <button class="btn-def" id="btn-create" type="submit">Create</button>
+        </div>
+    </form>
+</div>

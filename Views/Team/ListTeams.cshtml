@@ -2,62 +2,62 @@
 @inject SignInManager<IdentityUser> _signInManager;
 @model IEnumerable<SoccerManageApp.Dtos.CreateTeamView>
 @{
-    ViewData["Title"]="Index";
-}    
-
-@if(Model.Count()>0)
+    ViewData["Title"] = "Index";
+}
+@section Styles{
+    <link href="~/css/page/ListTeams.css" rel="stylesheet" />
+}
+@if (Model.Count() > 0)
 {
-    <table border="2" cellpadding="15">
-        <thead>
-            <th><h3>Team Name</h3></th>
-            <th><h3>Team Stadium</h3></th>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)    
-        {
-            <tr>
-               
-                <td><a asp-action="Details" asp-route-teamName="@item.TeamName">@item.TeamName</a>
-                <img src="~/Image/@item.TeamImage" >
-                <hr/>
-                <span style="size: ;">
-                    @if(@item.TeamName.Contains(ViewBag.username))
-                    {
-                        <a asp-action="EditTeam" asp-route-teamName="@item.TeamName" style="margin-right: 5px;" class="btn btn-primary">Edit</a>
-                    @if(_signInManager.IsSignedIn(User)&&User.IsInRole("Admin"))
-                    {
-                       <div id="confirmDelete_@item.TeamName" style="display: none;">
-                           <p>Are you sure?</p>
-                          
-                               
-                           <form asp-controller="Team" asp-action="DeleteTeam" asp-route-teamName="@item.TeamName" method="POST">
-                               <a href="#" onclick="confirm('@item.TeamName',false)" class="btn btn-primary">No</a>
-                               <button type="submit" class="btn btn-primary" >Yes</button>
-                           </form>
-                          
-                       </div> 
-                       <span id="delete_@item.TeamName">
-                            <a onclick="confirm('@item.TeamName',true)" class="btn btn-danger">Delete</a>  
-
-                       </span>
-
-                    }
-                    }
-                    
-                    </span>
-                </td>
-                <td><a asp-action="DetailStadium" asp-controller="Stadium" asp-route-stadiumName="@item.StadiumName">@item.StadiumName</a></td>
-            </tr>
-       
-            
-        }
-        </tbody>
-    </table>
+    <div style="width:60%" class="content-grid">
+        <table class="table-def" border="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th><h3>Team Name</h3></th>
+                    <th><h3>Team Stadium</h3></th>
+                    <th><h3>Edit/Delete</h3></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td @*class="team"*@>
+                            <a asp-action="Details" asp-route-teamName="@item.TeamName">
+                                <span><img class="img-team" src="~/Image/@item.TeamImage"></span>
+                                <span>@item.TeamName</span>
+                            </a>
+                        </td>
+                        <td><a asp-action="DetailStadium" asp-controller="Stadium" asp-route-stadiumName="@item.StadiumName">@item.StadiumName</a></td>
+                        <td>
+                            @if (@item.TeamName.Contains(ViewBag.username))
+                            {
+                                <button class="btn-def" id="btn-edit"><a asp-action="EditTeam" asp-route-teamName="@item.TeamName">Edit</a></button>
+                                @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                {
+                                    <div id="confirmDelete_@item.TeamName" style="display: none;">
+                                        <p>Are you sure?</p>
+                                        <form asp-controller="Team" asp-action="DeleteTeam" asp-route-teamName="@item.TeamName" method="POST">
+                                            <a href="#" onclick="confirm('@item.TeamName',false)" class="btn btn-primary">No</a>
+                                            <button type="submit" class="btn btn-primary">Yes</button>
+                                        </form>
+                                    </div>
+                                    <span id="delete_@item.TeamName">
+                                        <a onclick="confirm('@item.TeamName',true)" class="btn btn-danger">Delete</a>
+                                    </span>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 else
 {
     <h2 class="text-danger">No team available</h2>
 }
 @section Scripts{
-     <script src="~/js/custom.js"></script>
- }
+    <script src="~/js/custom.js"></script>
+}

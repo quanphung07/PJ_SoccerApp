@@ -2,55 +2,69 @@
 @inject SignInManager<IdentityUser> _signInManage;
 @model IEnumerable<SoccerManageApp.Dtos.MatchSchedules>
 @{
-    ViewData["Title"]="Details Match";
+    ViewData["Title"] = "Details Match";
 }
-<form action="/Match/GetSchedulesBy" method="GET">
-<input type="datetime" placeholder="Find by date" optional name="date"/>
-<input type="number" placeholder="Find by round" name="round"/>
-<button type="submit">Search</button>
-</form>
-<table border="1" cellpadding="15">
-    <thead class="thead-dark">
-        
-        <th>Round</th>
-        <th>Match ID</th>
-        <th>Date Time</th>
-        <th>Attendance</th>
-        <th>Home Team</th>
-        <th>Away Team</th>
-        <th>Stadium</th>
-        @if(User.IsInRole("Admin"))
-        {
-            <th>Admin Role</th>
-        }
-        
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Round</td>
-                <td>@item.MatchID</td>
-                <td>@item.Datetime.ToString("dd/MM/yyyy")</td>
-                <td>@item.Attendance</td>
-                <td>@item.HomeName
-                    <img src="~/Image/@item.HomeImage">
-                </td>
-                <td>@item.AwayName
-                    <img src="~/Image/@item.AwayImage">
-                </td>
-                <td>@item.StadiumName</td>
-                @if(User.IsInRole("Admin"))
-                 {
-                  <td><a href="/Result/CreateResult?matchId=@item.MatchID">Add Score</a></td>
-                }
-            </tr>
-        }
-    </tbody>
-    @if(_signInManage.IsSignedIn(User)&&User.IsInRole("Admin"))
+@section Styles{
+    <link href="~/css/page/GetSchedules.css" rel="stylesheet" />
+}
+<div class="Background" id="Schedules">
+    <form class="search" action="/Match/GetSchedulesBy" method="GET">
+        <input class="input-filter" type="datetime" placeholder="Find by date" optional name="date" />
+        <input class="input-filter" type="number" placeholder="Find by round" name="round" />
+        <button class="btn-def" id="btn-search" type="submit">Search</button>
+    </form>
+    @if (_signInManage.IsSignedIn(User) && User.IsInRole("Admin"))
     {
-        <a asp-action="CreateMatch" asp-controller="Match">Create a match</a>
+        <button class="create-match btn-def"><a asp-action="CreateMatch" asp-controller="Match">Create a match</a></button>
     }
-   
-</table>
- <a href="/Match/GetSchedules">Back</a>
+    <div class="content-grid">
+        <table class="table-def" border="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Round</th>
+                    <th>Match ID</th>
+                    <th>Date Time</th>
+                    <th>Attendance</th>
+                    <th>Home Team</th>
+                    <th>Away Team</th>
+                    <th>Stadium</th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th>Admin Role</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Round</td>
+                        <td>@item.MatchID</td>
+                        <td>@item.Datetime.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Attendance</td>
+                        <td>
+                            <a href="#">
+                                <span><img class="img-team" src="~/Image/@item.HomeImage"></span>
+                                <span>@item.HomeName</span>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <span><img class="img-team" src="~/Image/@item.AwayImage"></span>
+                                <span>@item.AwayName</span>
+                            </a>
+                        </td>
+                        <td>@item.StadiumName</td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td><a href="/Result/CreateResult?matchId=@item.MatchID">Add Score</a></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@*<a href="/Match/GetSchedules">Back</a>*@

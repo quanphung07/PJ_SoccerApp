@@ -17,3 +17,12 @@
         outline: none;
         box-sizing:border-box;
     }
+.input-filter {
+    height:50px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 10px 20px 10px 45px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb;
+}
